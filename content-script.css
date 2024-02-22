@@ -1,0 +1,19 @@
+button {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #01a9e1;
+    z-index:100;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #5bc4bc;
+    opacity: 0.5;
+}
