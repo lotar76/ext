@@ -4,9 +4,8 @@ console.log('hello')
 setTimeout(insertButton,2000)
 
 function insertButton() {
-    const images = document.querySelectorAll("[role='gridcell']");
+    const images = document.querySelectorAll("[role='gridcell'] > div.block > div.absolute > div.flex  ");
 
-    console.log(images.length);
 
     [...images].forEach(el=>{
 
@@ -28,7 +27,9 @@ function insertButton() {
         shadowRoot.prepend(button)
         el.prepend(root)
 
-        button.addEventListener('click', ()=>{
+        button.addEventListener('click', (e)=>{
+            alert(2)
+            e.stopPropagation()
             let imgLink = el.querySelector('img').src;
             window.open(imgLink,'_blank');
         })
