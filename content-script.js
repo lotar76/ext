@@ -12,7 +12,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 setTimeout(insertButton,2000)
 
 
-
+const apiUrl = 'https://inksketch.ru'
 function insertButton() {
     const images = document.querySelectorAll('div[role="gridcell"]');
     [...images].forEach(el=>{
@@ -23,12 +23,18 @@ function insertButton() {
             button.classList.add('grap')
             button.addEventListener('click', (e)=>{
                 e.preventDefault();
-                const url = "http://localhost/api/image";
+                const url = `${apiUrl}/api/image`;
                 const options = {
                     method: "POST",
+                    mode: 'no-cors',
                     headers: {
                         Accept: "application/json",
+                        ContentType: "application/json;charset=UTF-8",
+                        "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept, Authorization, custom-header",
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
                         "Content-Type": "application/json;charset=UTF-8",
+                        "Access-Control-Expose-Headers": "custom-header"
                     },
                     body: JSON.stringify({
                         url:el.querySelector('img').src,
