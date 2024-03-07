@@ -12,29 +12,24 @@ observer.observe(document.body, { childList: true, subtree: true });
 setTimeout(insertButton,2000)
 
 
-const apiUrl = 'https://inksketch.ru'
+const apiUrl = 'https://api-api.ru'
 function insertButton() {
     const images = document.querySelectorAll('div[role="gridcell"]');
     [...images].forEach(el=>{
         const button = el.querySelector('button.bg-zinc-900')
-        console.log(button.classList.contains("grap"))
+        // console.log(button.classList.contains("grap"))
         if(!button.classList.contains("grap")){
-            console.log(1)
+            // console.log(1)
             button.classList.add('grap')
             button.addEventListener('click', (e)=>{
                 e.preventDefault();
                 const url = `${apiUrl}/api/image`;
                 const options = {
                     method: "POST",
-                    mode: 'no-cors',
                     headers: {
-                        Accept: "application/json",
-                        ContentType: "application/json;charset=UTF-8",
-                        "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept, Authorization, custom-header",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                        "Content-Type": "application/json;charset=UTF-8",
-                        "Access-Control-Expose-Headers": "custom-header"
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "X-Requested-With": "XMLHttpRequest"
                     },
                     body: JSON.stringify({
                         url:el.querySelector('img').src,
@@ -46,7 +41,7 @@ function insertButton() {
                 fetch(url, options)
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data);
+                        // console.log(data);
                     });
             })
         }
